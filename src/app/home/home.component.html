@@ -1,0 +1,31 @@
+<div *ngIf="error" class="container">
+    <mat-card class="loading" appearance="outlined" color="red">
+        <mat-card-content>
+            <h1>An error has occurred</h1>
+            <p color="red">{{error}}</p>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div *ngIf="movies" class="scroll-container">
+    <button mat-icon-button class="scroll-btn left" (click)="scrollLeft()">
+        <mat-icon>chevron_left</mat-icon>
+    </button>
+    <div #scrollabel class="movielist">
+        <mat-card class="example-card" appearance="outlined" *ngFor="let movie of movies">
+            <img mat-card-image [src]='movie.poster'>
+            <mat-card-content>
+                <h1 class="title">{{movie.title}}</h1>
+                <h4>{{utils.formatRuntime(movie.runTime)}}</h4>
+                <p>Realeased {{utils.formatDate(movie.startDate)}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <a [routerLink]="['/details/' + movie.movieId]" mat-button><i class="fa-solid fa-ticket"></i>GET TICKETS</a>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <button mat-icon-button class="scroll-btn right" (click)="scrollRight()">
+        <mat-icon>chevron_right</mat-icon>
+    </button>
+
+</div>

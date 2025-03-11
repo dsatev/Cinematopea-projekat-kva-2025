@@ -1,0 +1,18 @@
+<div class="details" *ngIf="movie">
+    <h1>{{movie.title}}</h1>
+    <div class="movie-details">
+        <img [src] = "movie.poster" [alt]="movie.originalTitle">
+        <mat-card class="movie-card" appearance="outlined">
+            <mat-card-content>
+                <h2>Movie details</h2>
+                <p>{{movie.director.name}}</p>
+                <p>
+                    <span *ngFor="let actor of movie.actors; let last = last">
+                        {{actor.actor.name}} {{last ? '' : ', '}}
+                    </span>
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+

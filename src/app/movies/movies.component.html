@@ -1,0 +1,26 @@
+
+
+
+
+<div class="container">
+    <div class="filter" postion="left">
+
+    </div>
+    <div class="display" *ngIf="movies" position="right">
+        <mat-card class="example-card2" *ngFor="let movie of movies" appearance="outlined">
+            <img [src]="movie.poster" mat-card-image>
+            <mat-card-content>
+                <h4 class="title">{{movie.title}}</h4>
+                <p>{{utils.formatRuntime(movie.runTime)}}</p>
+                <p>
+                    <span *ngFor="let genre of movie.genre; let last = last">
+                        {{genre.genre.name}}{{last ? '' : ', '}}
+                    </span>
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <a routerLink="/details" mat-button>GET TICKETS</a>
+            </mat-card-actions>
+        </mat-card>
+    </div>  
+</div>
