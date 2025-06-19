@@ -1,3 +1,5 @@
+import { Review } from "./review.model"
+
 export  interface Movie {
     movieId: number
     interanlId: string
@@ -13,8 +15,8 @@ export  interface Movie {
     createdAt: string
     updatedAt: null | string 
     director: Director
-    actors: MovieActor[]
-    genre: MovieGenre[]
+    movieActors: MovieActor[]
+    movieGenres: MovieGenre[]
 }
 export interface Director{
         directorId: number
@@ -52,6 +54,7 @@ export interface Screening {
     movieId: number
     date: string
     time: string
-    location: string
+    hall: string
+    availableSeats: number
     price: number
 }

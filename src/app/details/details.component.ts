@@ -10,7 +10,7 @@ import { MovieService } from '../../services/movie.service';
 
 @Component({
   selector: 'app-details',
-  imports: [NgIf, NgFor, MatCardModule, MatListModule, RouterLink, MatButtonModule],
+  imports: [NgIf, NgFor, MatCardModule, MatListModule,  MatButtonModule],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css'
 })

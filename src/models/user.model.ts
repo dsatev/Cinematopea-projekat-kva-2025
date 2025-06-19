@@ -1,9 +1,11 @@
 export interface User {
-    name: string
-    lastname: string
+    id: number
+    firstName: string
+    lastName: string
     email: string
     phone: string
     address: string
     favoriteGenres: string[]
+    username: string
     password: string
 }

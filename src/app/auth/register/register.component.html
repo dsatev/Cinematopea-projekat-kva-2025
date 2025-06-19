@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-title style="padding-bottom: 15px; text-align: center;">Registracija</mat-card-title>
+  <form [formGroup]="form" (ngSubmit)="register()">
+    <mat-form-field appearance="outline" class="w-full"><input matInput placeholder="Ime" formControlName="firstName"></mat-form-field>
+    <mat-form-field appearance="outline" class="w-full"><input matInput placeholder="Prezime" formControlName="lastName"></mat-form-field>
+    <mat-form-field appearance="outline" class="w-full"><input matInput placeholder="Email" formControlName="email"></mat-form-field>
+    <mat-form-field appearance="outline" class="w-full"><input matInput placeholder="Telefon" formControlName="phone"></mat-form-field>
+    <mat-form-field appearance="outline" class="w-full"><input matInput placeholder="Adresa" formControlName="address"></mat-form-field>
+    <mat-form-field appearance="outline" class="w-full"><input matInput placeholder="Omiljeni žanrovi (npr. komedija, akcija)" formControlName="favoriteGenres"></mat-form-field>
+    <mat-form-field appearance="outline" class="w-full"><input matInput placeholder="Korisničko ime" formControlName="username"></mat-form-field>
+    <mat-form-field appearance="outline" class="w-full"><input matInput placeholder="Šifra" formControlName="password" type="password"></mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Registruj se</button>
+  </form>
+  <div *ngIf="error" style="color: red;">{{ error }}</div>
+</mat-card>

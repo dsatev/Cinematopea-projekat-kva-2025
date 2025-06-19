@@ -1,4 +1,7 @@
 import axios from 'axios'
+import { Observable } from 'rxjs'
+import { Screening } from '../models/movie.model'
+import { Review } from '../models/review.model'
 
 const client = axios.create ({
     baseURL: "https://movie.pequla.com/api",
@@ -13,6 +16,10 @@ const client = axios.create ({
 
 
 export class MovieService {
+    private screenings: Screening[] = []
+    private reviews : Review[] = []
+
+
     static async getMovies(page: number = 0, size: number = 10){
         return client.request({
             url: '/movie',
@@ -39,4 +46,28 @@ export class MovieService {
             }
         })
     }
+
+    static async getActors(page: number = 0, size: number = 10){
+        return client.request({
+            url: '/actor',
+            method:'GET',
+            params:{
+                page: 'page',
+                size: 'size'
+            }
+        })
+    }
+
+    static async getDirectos(page: number = 0, size: number = 10){
+        return client.request({
+            url: '/director',
+            method: 'GET',
+            params: {
+                page: 'page',
+                size: 'size'
+            }
+        })
+    }
+
+    
 }

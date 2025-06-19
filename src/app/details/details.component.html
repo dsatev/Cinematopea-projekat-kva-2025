@@ -1,18 +1,25 @@
 <div class="details" *ngIf="movie">
-    <h1>{{movie.title}}</h1>
+    
     <div class="movie-details">
-        <img [src] = "movie.poster" [alt]="movie.originalTitle">
-        <mat-card class="movie-card" appearance="outlined">
+        <div>
+            <h1>{{movie.title}}</h1>
+            
+        </div>
+        <div>
+            <mat-card class="movie-card" appearance="outlined">
             <mat-card-content>
+                <img [src] = "movie.poster" [alt]="movie.originalTitle">
                 <h2>Movie details</h2>
-                <p>{{movie.director.name}}</p>
-                <p>
-                    <span *ngFor="let actor of movie.actors; let last = last">
+                <p>Director: {{movie.director.name}}</p>
+                <p>Actors:
+                    <span *ngFor="let actor of movie.movieActors; let last = last">
                         {{actor.actor.name}} {{last ? '' : ', '}}
                     </span>
                 </p>
+                <p>Description: {{movie.shortDescription}}</p>
             </mat-card-content>
-        </mat-card>
+        </mat-card></div>
+        
     </div>
 </div>
 

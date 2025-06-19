@@ -5,11 +5,21 @@
     <i class="fa-solid fa-magnifying-glass"></i>
   </a>
   <a routerLink = " " mat-button>
-    <i class="fa-solid fa-film"></i>Movies
+    <i class="fa-solid fa-film"></i>Filmovi
   </a>
-  <a routerLink = "/singin" mat-button>
-    <i class="fa-solid fa-user"></i>Sign In
+  <a *ngIf="!userService.isLoggedIn()" routerLink = "/login" mat-button>
+    <i class="fa-solid fa-user"></i>Prijava
   </a>
+
+  <ng-container *ngIf="userService.isLoggedIn()">
+    <a routerLink="/profile" mat-button>
+      <i class="fa-solid fa-user"></i>Profil
+    </a>
+    <button mat-button (click)="logout()">
+      <i class="fa-solid fa-right-form-bracket"></i>Odjava
+    </button>
+
+  </ng-container>
 </mat-toolbar>
 <router-outlet></router-outlet>
 

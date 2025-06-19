@@ -11,16 +11,16 @@
     <button mat-icon-button class="scroll-btn left" (click)="scrollLeft()">
         <mat-icon>chevron_left</mat-icon>
     </button>
-    <div #scrollabel class="movielist">
+    <div  class="movielist" #scrollable>
         <mat-card class="example-card" appearance="outlined" *ngFor="let movie of movies">
             <img mat-card-image [src]='movie.poster'>
             <mat-card-content>
                 <h1 class="title">{{movie.title}}</h1>
                 <h4>{{utils.formatRuntime(movie.runTime)}}</h4>
-                <p>Realeased {{utils.formatDate(movie.startDate)}}</p>
+                <p>U bioskopu od {{utils.formatDate(movie.startDate)}}</p>
             </mat-card-content>
             <mat-card-actions>
-                <a [routerLink]="['/details/' + movie.movieId]" mat-button><i class="fa-solid fa-ticket"></i>GET TICKETS</a>
+                <a [routerLink]="['/details/' + movie.movieId]" mat-button><i class="fa-solid fa-ticket"></i>UZMI KARTE</a>
             </mat-card-actions>
         </mat-card>
     </div>
@@ -29,3 +29,25 @@
     </button>
 
 </div>
+
+
+<div class="container2">
+    <div class="filter" postion="left">
+    </div>
+    <div class="display" *ngIf="movies" >
+        <mat-card class="example-card2" *ngFor="let movie of movies" appearance="outlined">
+            <img [src]="movie.poster" mat-card-image>
+            <mat-card-content>
+                <h4 class="title">{{movie.title}}</h4>
+                <p>{{utils.formatRuntime(movie.runTime)}}</p>
+                <p class="title">
+                    <span *ngFor="let genre of movie.movieGenres; let last = last">
+                        {{genre.genre.name}}{{last ? '' : ', '}}
+                    </span>
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <a [routerLink]="['/details/' + movie.movieId]" mat-button><i class="fa-solid fa-ticket"></i>UZMI KARTE</a>
+            </mat-card-actions>
+        </mat-card>
+    </div>  
