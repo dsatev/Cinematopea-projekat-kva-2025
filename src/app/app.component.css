@@ -6,3 +6,19 @@ mat-toolbar {
     display: flex;
     justify-content: space-between;
 }
+
+.cart-menu {
+  max-width: 300px;
+  padding: 0.5rem;
+}
+
+.cart-item {
+  padding: 0.5rem 1rem;
+  color: white;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}

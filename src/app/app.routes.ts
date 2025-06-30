@@ -4,6 +4,7 @@ import { MoviesComponent } from './movies/movies.component';
 import { DetailsComponent } from './details/details.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { CartComponent } from './cart/cart.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -11,5 +12,6 @@ export const routes: Routes = [
     { path: 'details/:movieId', component: DetailsComponent},
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
+    { path: 'cart', component: CartComponent},
     { path: '**', redirectTo: '' }
 ];

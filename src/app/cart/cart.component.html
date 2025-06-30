@@ -1,0 +1,19 @@
+<h2>Moje rezervacije</h2>
+
+<div *ngFor="let res of reservations" class="reservation-card">
+  <div>
+    <strong>Film:</strong> {{ getMovie(res.projectionId)?.title }} <br>
+    <strong>Datum:</strong> {{ getProjection(res.projectionId)?.dateTime | date:'short' }} <br>
+    <strong>Status:</strong> {{ res.status }} <br>
+    <strong>Cena:</strong> {{ getProjection(res.projectionId)?.price }} RSD
+  </div>
+
+  <div class="actions">
+    <button *ngIf="res.status === 'reserved'" mat-stroked-button color="warn" (click)="cancel(res.reservationId)">Otkaži</button>
+    <button *ngIf="res.status === 'reserved'" mat-stroked-button color="primary" (click)="markAsWatched(res.reservationId)">Označi kao gledano</button>
+  </div>
+</div>
+
+<hr>
+<h3>Ukupno: {{ total }} RSD</h3>
+

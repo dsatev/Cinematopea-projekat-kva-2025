@@ -35,12 +35,12 @@ export class RegisterComponent {
         const user = {
           ...this.form.value,
           favoriteGenres: this.form.value.favoriteGenres.split(',').map((g: string) => g.trim()),
-          id: 0
+          id: Date.now()
         }
 
         const success = this.userService.register(user)
         if(success){
-          this.router.navigate(['/home'])
+          this.userService.login(user.username, user.password)
         }else{
           this.error = 'Korisnicko ime vec postoji.'
         }

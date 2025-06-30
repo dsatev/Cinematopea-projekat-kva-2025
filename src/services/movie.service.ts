@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { Observable } from 'rxjs'
 import { Screening } from '../models/movie.model'
 import { Review } from '../models/review.model'
+import { Injectable } from '@angular/core'
 
 const client = axios.create ({
     baseURL: "https://movie.pequla.com/api",
@@ -12,6 +12,10 @@ const client = axios.create ({
     validateStatus: (status: number) => {
         return status === 200
     }
+})
+
+@Injectable({
+    providedIn: 'root'
 })
 
 

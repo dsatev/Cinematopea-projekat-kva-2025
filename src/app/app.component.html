@@ -15,6 +15,9 @@
     <a routerLink="/profile" mat-button>
       <i class="fa-solid fa-user"></i>Profil
     </a>
+    <button mat-icon-button [matMenuTriggerFor]="cartMenu" *ngIf="userService.getCurrentUser()">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
     <button mat-button (click)="logout()">
       <i class="fa-solid fa-right-form-bracket"></i>Odjava
     </button>
@@ -23,4 +26,29 @@
 </mat-toolbar>
 <router-outlet></router-outlet>
 
+
+<mat-menu #cartMenu="matMenu" class="cart-menu">
+  <ng-container *ngIf="reservations.length > 0; else emptyCart">
+    <div class="cart-item" *ngFor="let res of reservations">
+      <p><strong>{{ getMovie(res.projectionId)?.title }}</strong></p>
+      <p>{{ getProjection(res.projectionId)?.dateTime | date:'short' }}</p>
+      <p>{{ res.status }} - {{ getProjection(res.projectionId)?.price }} RSD</p>
+
+      <div class="actions" *ngIf="res.status === 'reserved'">
+        <button mat-mini-button color="warn" (click)="cancel(res.reservationId)">Otkaži</button>
+        <button mat-mini-button color="primary" (click)="markAsWatched(res.reservationId)">Gledano</button>
+      </div>
+
+      <mat-divider></mat-divider>
+    </div>
+
+    <p style="text-align: right; font-weight: bold; padding: 0.5rem 1rem;">
+      Ukupno: {{ total }} RSD
+    </p>
+  </ng-container>
+
+  <ng-template #emptyCart>
+    <p style="padding: 1rem;">Korpa je prazna.</p>
+  </ng-template>
+</mat-menu>
 

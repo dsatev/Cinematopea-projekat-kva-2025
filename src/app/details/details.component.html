@@ -1,25 +1,35 @@
-<div class="details" *ngIf="movie">
-    
-    <div class="movie-details">
-        <div>
-            <h1>{{movie.title}}</h1>
-            
-        </div>
-        <div>
-            <mat-card class="movie-card" appearance="outlined">
-            <mat-card-content>
-                <img [src] = "movie.poster" [alt]="movie.originalTitle">
-                <h2>Movie details</h2>
-                <p>Director: {{movie.director.name}}</p>
-                <p>Actors:
-                    <span *ngFor="let actor of movie.movieActors; let last = last">
-                        {{actor.actor.name}} {{last ? '' : ', '}}
-                    </span>
-                </p>
-                <p>Description: {{movie.shortDescription}}</p>
-            </mat-card-content>
-        </mat-card></div>
-        
-    </div>
-</div>
+<div class="details" *ngIf="movie">  
+  <div class="movie-details">
+    <mat-card class="movie-card" appearance="outlined">
+      <mat-card-content>
+        <img [src]="movie.poster" [alt]="movie.originalTitle">
+        <h2>{{movie.title}}</h2>
+        <p><strong>Reziser:</strong> {{movie.director.name}}</p>
+        <p><strong>Glumci:</strong>
+          <span *ngFor="let actor of movie.movieActors; let last = last">
+            {{actor.actor.name}}{{last ? '' : ', '}}
+          </span>
+        </p>
+        <p><strong>Opis:</strong> {{movie.shortDescription}}</p>
+      </mat-card-content>
+    </mat-card>
 
+
+    <div class="projections" *ngIf="projections.length > 0">
+      <h2>Projekcije</h2>
+      <div *ngFor="let proj of projections" class="projection-card">
+        <p><strong>Datum i vreme:</strong> {{ utils.formatDate(proj.dateTime) }}</p>
+        <p><strong>Lokacija:</strong> {{ proj.location }}</p>
+        <p><strong>Cena:</strong> {{ proj.price }} RSD</p>
+        <button
+            mat-raised-button
+            color="accent"
+            [disabled]="proj.reserved >= proj.seats"
+            matTooltip="{{ proj.reserved >= proj.seats ? 'Projekcija je popunjena' : 'Rezerviši projekciju' }}"
+            (click)="reserve(proj.projectionId)">
+            Rezerviši
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

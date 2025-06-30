@@ -32,25 +32,26 @@ export class UserService {
         const found = this.users.find(u => u.username === username && u.password === password)
         if(found) {
             this.loggedInUser = found
+            localStorage.setItem('currentUser', JSON.stringify(found))
             return true
         }
         return false
     }
 
     logout(){
-        this.loggedInUser = null
+        localStorage.removeItem('currentUser')
     }
 
     getCurrentUser(): User | null{
-        return this.loggedInUser
+        const currentUser = localStorage.getItem('currentUser')
+        if(!currentUser) return null
+        const user = JSON.parse(currentUser)
+        return user
     }
 
-    getLoggedInUsername(): string | null {
-        return this.loggedInUser?.username || null
-    }
 
     isLoggedIn(): boolean {
-        return this.loggedInUser !== null
+        return localStorage.getItem('currentUser') !== null
     }
 
     updateProfile(updated: Partial<User>) {

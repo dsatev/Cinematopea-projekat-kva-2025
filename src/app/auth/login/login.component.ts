@@ -31,7 +31,9 @@ export class LoginComponent {
         const success = this.userService.login(username,password)
 
         if(success){
-          this.router.navigate(['/home'])
+          this.router.navigate(['/home']).then(() => {
+            window.location.reload()
+          })   
         }else{
           this.error = 'Pogresno korisnicko ime ili lozinka'
         }
