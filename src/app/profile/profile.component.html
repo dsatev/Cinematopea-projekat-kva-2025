@@ -1,0 +1,38 @@
+<h2 style="text-align: center;">Moj profil</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()" class="profile-form">
+  <mat-form-field appearance="fill">
+    <mat-label>Ime</mat-label>
+    <input matInput formControlName="firstName">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Prezime</mat-label>
+    <input matInput formControlName="lastName">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Telefon</mat-label>
+    <input matInput formControlName="phone">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Korisničko ime</mat-label>
+    <input matInput formControlName="username">
+  </mat-form-field>
+
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Omiljeni zanrovi</mat-label>
+    <input matInput formControlName="favoriteGenres">
+  </mat-form-field>
+
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Sačuvaj</button>
+</form>
+

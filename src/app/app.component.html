@@ -35,8 +35,8 @@
       <p>{{ res.status }} - {{ getProjection(res.projectionId)?.price }} RSD</p>
 
       <div class="actions" *ngIf="res.status === 'reserved'">
-        <button mat-mini-button color="warn" (click)="cancel(res.reservationId)">Otkaži</button>
-        <button mat-mini-button color="primary" (click)="markAsWatched(res.reservationId)">Gledano</button>
+        <button mat-button (click)="cancel(res.reservationId)">Otkaži</button>
+        <button mat-button (click)="markAsWatched(res.reservationId)">Gledano</button>
       </div>
 
       <mat-divider></mat-divider>

@@ -57,11 +57,16 @@ export class UserService {
     updateProfile(updated: Partial<User>) {
         if(!this.loggedInUser) return
         const index = this.users.findIndex(u => u.id === this.loggedInUser!.id)
+        console.log('Novi korisnik:', this.loggedInUser)
+        console.log('Svi korisnici:', this.users)
+    
         if(index === -1) return
 
         this.users[index] = {...this.users[index], ...updated}
         this.loggedInUser = this.users[index]
         this.saveUsers()
+
+        localStorage.setItem('currentUser', JSON.stringify(this.loggedInUser))
     }
 
     getAllUsers(): User[] {

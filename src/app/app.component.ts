@@ -62,7 +62,10 @@ export class AppComponent {
   }
 
   cancel(resId: number) {
-    this.reservationService.deleteReservation(resId)
+    const confirmation = confirm('Da li ste sigurni da želite da otkažete ovu rezervaciju?')
+
+    if(confirmation)
+      this.reservationService.deleteReservation(resId)
   }
 
 
