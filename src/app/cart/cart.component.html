@@ -1,12 +1,10 @@
 <h2>Moje rezervacije</h2>
 
-<div *ngFor="let res of reservations" class="reservation-card">
-  <div>
-    <strong>Film:</strong> {{ getMovie(res.projectionId)?.title }} <br>
-    <strong>Datum:</strong> {{ getProjection(res.projectionId)?.dateTime | date:'short' }} <br>
-    <strong>Status:</strong> {{ res.status }} <br>
-    <strong>Cena:</strong> {{ getProjection(res.projectionId)?.price }} RSD
-  </div>
+<div *ngFor="let res of reservations" class="reservatio-item">
+  <p><strong>🎬 Film:</strong> {{ getMovie(res.projectionId)?.title }}</p>
+  <p><strong>🕒 Datum:</strong> {{ utils.formatDateTime(getProjection(res.projectionId)?.dateTime || '') }}</p>
+  <p><strong>🏛️ Lokacija:</strong> {{ getProjection(res.projectionId)?.location }}</p>
+  <p><strong>💸 Cena:</strong> {{ getProjection(res.projectionId)?.price }} RSD</p>
 
   <div class="actions">
     <button *ngIf="res.status === 'reserved'" mat-stroked-button color="warn" (click)="cancel(res.reservationId)">Otkaži</button>

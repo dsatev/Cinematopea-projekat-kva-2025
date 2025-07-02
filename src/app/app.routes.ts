@@ -6,6 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { CartComponent } from './cart/cart.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AllProjectionsComponent } from './all-projections/all-projections.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },

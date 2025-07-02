@@ -7,6 +7,7 @@ import { Reservation } from '../../models/reservation.model';
 import { Projection } from '../../models/projection.model';
 import { Movie } from '../../models/movie.model';
 import { CommonModule } from '@angular/common';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-cart',
@@ -24,7 +25,8 @@ export class CartComponent  {
     private reservationService: ReservationService,
     private projectionService: ProjectionService,
     private movieService: MovieService,
-    private userService: UserService
+    private userService: UserService,
+    public utils: UtilsService
   ) {const user = this.userService.getCurrentUser()
     if (!user) return
 

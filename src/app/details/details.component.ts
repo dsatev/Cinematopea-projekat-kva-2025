@@ -14,10 +14,13 @@ import { ReservationService } from '../../services/reservation.service';
 import { Projection } from '../../models/projection.model';
 import { ProjectionService } from '../../services/projection.service';
 import { MatTooltipModule } from '@angular/material/tooltip'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-details',
-  imports: [NgIf, NgFor, MatCardModule, MatListModule,  MatButtonModule, MatTooltipModule],
+  imports: [NgIf, NgFor, MatCardModule, MatListModule,  MatButtonModule, MatTooltipModule, FormsModule,  MatIconModule, MatInputModule, ReactiveFormsModule],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css'
 })
@@ -25,9 +28,9 @@ export class DetailsComponent {
   public movie: Movie | null = null
   public reviews: Review[] = []
   public projections: Projection[] = []
-  public comment = ''
-  public rating = 0
-  public canReview = false
+  public averageRating: number = 0
+  public roundedRating: number = 0
+  
 
   public constructor(private route: ActivatedRoute, public utils: UtilsService, 
                       public reviewService: ReviewService, public userService: UserService, 
@@ -40,27 +43,31 @@ export class DetailsComponent {
 
           if(!this.movie) return
           this.projections = this.projectionService.getProjectionByMovieId(this.movie.movieId)
-            console.log('Movie ID:', this.movie?.movieId);
-            console.log('Projekcije:', this.projections);
-          const user = this.userService.getCurrentUser();
-          if (!user) return;
-          this.canReview = this.reservationService.hasWatched(this.movie.movieId, user.id);
-          this.reviews = this.reviewService.getReviewsForMovie(this.movie.movieId);
-          
+          this.reviews = this.reviewService.getReviewsForMovie(this.movie.movieId)
+
+          const users = this.userService.getAllUsers()
+          this.reviews.forEach(r => {
+            const user = users.find(u => u.id === r.userId)
+            r.userName = user ? `${user.firstName} ${user.lastName}` : 'Nepoznat korisnik'
+          })
+
+          if(this.reviews.length > 0) {
+           const totalRating = this.reviews.reduce((sum, review) => sum + review.rating, 0);
+           this.averageRating = +(totalRating / this.reviews.length).toFixed(1);
+           this.roundedRating = Math.round(this.averageRating);
+          }
        })
     })
+    
   }
 
 
-  setRating(r: number) {
-    this.rating = r;
-  }
 
   
   reserve(projectionId: number): void {
-    const user = this.userService.getCurrentUser();
+    const user = this.userService.getCurrentUser()
     if (!user) {
-      alert('Morate biti prijavljeni da biste rezervisali.');
+      alert('Morate biti prijavljeni da biste rezervisali.')
       return;
     }
 
@@ -71,7 +78,7 @@ export class DetailsComponent {
       status: 'reserved'
     });
 
-    alert('Uspešno rezervisano!');
+    alert('Uspešno rezervisano!')
   }
 }
 

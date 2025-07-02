@@ -14,6 +14,8 @@ export class UserService {
     constructor(){
         const data = localStorage.getItem('users')
         if (data) this.users = JSON.parse(data)
+        const currentUser = localStorage.getItem('currentUser')
+        if(currentUser) this.loggedInUser = JSON.parse(currentUser)
     }
 
     private saveUsers() {

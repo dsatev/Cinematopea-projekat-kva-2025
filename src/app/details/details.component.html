@@ -33,3 +33,33 @@
     </div>
   </div>
 </div>
+
+
+<div style="text-align: center;" *ngIf="averageRating > 0" class="average-rating">
+  <span>Prosečna ocena:</span>
+  <ng-container *ngFor="let s of [1,2,3,4,5]">
+    <mat-icon [color]="s <= roundedRating ? 'accent' : ''">star</mat-icon>
+  </ng-container>
+  <span>({{ averageRating }})</span>
+</div>
+
+<div *ngIf="reviews.length > 0">
+  <mat-card *ngFor="let review of reviews" class="review-card" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>{{ review.userName }}</mat-card-title>
+      <mat-card-subtitle>
+        <ng-container *ngFor="let star of [1,2,3,4,5]">
+          <mat-icon [color]="star <= review.rating ? 'accent' : ''">star</mat-icon>
+        </ng-container>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>{{ review.comment }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+
+

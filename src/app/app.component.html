@@ -18,10 +18,10 @@
     <button mat-icon-button [matMenuTriggerFor]="cartMenu" *ngIf="userService.getCurrentUser()">
       <mat-icon>shopping_cart</mat-icon>
     </button>
+   
     <button mat-button (click)="logout()">
       <i class="fa-solid fa-right-form-bracket"></i>Odjava
     </button>
-
   </ng-container>
 </mat-toolbar>
 <router-outlet></router-outlet>

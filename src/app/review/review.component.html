@@ -1,0 +1,18 @@
+<h2>Ocenite film: {{ data.movieTitle }}</h2>
+
+<div class="stars">
+  <button *ngFor="let s of [1,2,3,4,5]" mat-icon-button (click)="setRating(s)">
+    <mat-icon [color]="s <= rating ? 'accent' : ''">star</mat-icon>
+  </button>
+</div>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Komentar</mat-label>
+  <textarea matInput [(ngModel)]="comment"></textarea>
+</mat-form-field>
+
+<div class="actions">
+  <button mat-button (click)="cancel()">Otkaži</button>
+  <button mat-raised-button color="primary" (click)="submit()" [disabled]="!comment || rating === 0">Pošalji</button>
+</div>
+

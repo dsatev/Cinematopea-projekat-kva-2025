@@ -1,4 +1,4 @@
-import { CommonModule, NgIf } from '@angular/common'
+import { CommonModule, NgFor, NgForOf, NgIf } from '@angular/common'
 import { Component, Injectable, OnInit } from '@angular/core'
 import { MatButtonModule } from '@angular/material/button'
 import { MatToolbarModule } from '@angular/material/toolbar'
@@ -13,10 +13,14 @@ import { Movie } from '../models/movie.model'
 import { MatDividerModule } from '@angular/material/divider'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatIconModule } from '@angular/material/icon'
+import { ReviewService } from '../services/review.service'
+import { ReviewComponent } from './review/review.component'
+import { MatDialogModule, MatDialog } from '@angular/material/dialog'
+import { FormsModule } from '@angular/forms'
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, MatToolbarModule, MatButtonModule, CommonModule, MatMenuModule, MatDividerModule, MatIconModule],
+  imports: [RouterOutlet, RouterLink, MatToolbarModule, MatButtonModule, CommonModule, MatMenuModule, MatDividerModule, MatIconModule, MatDialogModule, FormsModule, NgForOf],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -30,7 +34,8 @@ export class AppComponent {
 
   public constructor(private router: Router, public userService: UserService,
                     public movieService: MovieService, public reservationService: ReservationService,
-                    public projectionService: ProjectionService)
+                    public projectionService: ProjectionService, public reviewService: ReviewService,
+                    private dialog: MatDialog)
   {
     const user = this.userService.getCurrentUser()
     console.log('Ulogovani korisnik:', user);
@@ -70,8 +75,36 @@ export class AppComponent {
 
 
   markAsWatched(resId: number) {
+    const res = this.reservations.find(r => r.reservationId === resId)
+    if (!res) return
+
     this.reservationService.updateStatus(resId, 'watched')
-  }
+
+
+    const movie = this.getMovie(res.projectionId)
+    const user = this.userService.getCurrentUser()
+    if (!user || !movie) return
+
+    const dialogRef = this.dialog.open(ReviewComponent, {
+      data: { movieTitle: movie.title }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.reservationService.deleteReservation(resId);
+
+      if (result) {
+        this.reviewService.addReview({
+          movieId: movie.movieId,
+          userId: user.id,
+          rating: result.rating,
+          comment: result.comment,
+          timestamp: new Date().toISOString()
+        });
+        alert('Hvala na recenziji!')
+      }
+  });
+}
+
 
   logout(){
     this.userService.logout()

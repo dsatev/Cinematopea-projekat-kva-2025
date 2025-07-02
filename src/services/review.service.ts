@@ -1,23 +1,29 @@
-import { Injectable } from "@angular/core";
-import { Review } from "../models/review.model";
+import { Injectable } from '@angular/core';
+import { Review } from '../models/review.model';
 
-@Injectable({
-    providedIn: 'root'
-})
-
+@Injectable({ providedIn: 'root' })
 export class ReviewService {
-    private reviews: Review[] = []
+  private reviews: Review[] = [];
 
-    addReview(review: Review): void {
-        review.reviewId = Date.now()
-        this.reviews.push(review)
-    }
+  constructor() {
+    const data = localStorage.getItem('reviews');
+    if (data) this.reviews = JSON.parse(data);
+  }
 
-    getReviewsForMovie(movieId: number): Review[] {
-        return this.reviews.filter(r => r.movieId === movieId)
-    }
+  private save() {
+    localStorage.setItem('reviews', JSON.stringify(this.reviews));
+  }
 
-    getReviewsByUser(userId: number): Review[] {
-        return this.reviews.filter(r => r.userId === userId)
-    }
+  getReviewsForMovie(movieId: number): Review[] {
+    return this.reviews.filter(r => r.movieId === movieId);
+  }
+
+  hasReviewed(movieId: number, userId: number): boolean {
+    return this.reviews.some(r => r.movieId === movieId && r.userId === userId);
+  }
+
+  addReview(review: Review) {
+    this.reviews.push(review);
+    this.save();
+  }
 }

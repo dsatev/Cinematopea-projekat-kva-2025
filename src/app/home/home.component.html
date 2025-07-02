@@ -18,6 +18,11 @@
                 <h1 class="title">{{movie.title}}</h1>
                 <h4>{{utils.formatRuntime(movie.runTime)}}</h4>
                 <p>U bioskopu od {{utils.formatDate(movie.startDate)}}</p>
+                <p class="title">
+                    <span *ngFor="let genre of movie.movieGenres; let last = last">
+                        {{genre.genre.name}}{{last ? '' : ', '}}
+                    </span>
+                </p>
             </mat-card-content>
             <mat-card-actions>
                 <a [routerLink]="['/details/' + movie.movieId]" mat-button><i class="fa-solid fa-ticket"></i>UZMI KARTE</a>
@@ -47,7 +52,7 @@
                 </p>
             </mat-card-content>
             <mat-card-actions>
-                <a [routerLink]="['/details/' + movie.movieId]" mat-button><i class="fa-solid fa-ticket"></i>UZMI KARTE</a>
+                <a [routerLink]="['/details/' + movie.movieId]" mat-button><i class="fa-solid fa-ticket"></i> UZMI KARTE</a>
             </mat-card-actions>
         </mat-card>
     </div>  

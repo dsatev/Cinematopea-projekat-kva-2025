@@ -53,3 +53,18 @@ button {
   color: black;
   font-weight: bold;
 }
+
+.review-card {
+  margin-bottom: 1rem;
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.average-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: gold;
+}

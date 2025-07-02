@@ -1,16 +1,13 @@
-.reservation-card {
-  background-color: #1a1a1a;
-  color: white;
+.reservation-item {
+  background-color: #121212;
+  color: #00ff7f;
   padding: 1rem;
-  margin: 1rem 0;
-  border: 1px solid #333;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  border: 1px solid #00ff7f40;
+  border-radius: 12px;
+  margin-bottom: 0.7rem;
+  font-family: monospace;
 }
 
-.actions {
-  display: flex;
-  gap: 10px;
+.reservation-item strong {
+  color: #00ff7f;
 }
