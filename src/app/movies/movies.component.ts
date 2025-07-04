@@ -37,8 +37,8 @@ export class MoviesComponent {
   
 onSearch(term: string) {
   if (!term) {
-    this.filteredMovies = this.movies;
-    return;
+    this.filteredMovies = this.movies
+    return
   }
 
   this.filteredMovies = this.movies.filter(movie =>
@@ -48,7 +48,7 @@ onSearch(term: string) {
     movie.movieGenres?.some(g => g.genre.name.toLowerCase().includes(term)) ||
     movie.movieActors?.some(a => a.actor.name.toLowerCase().includes(term)) ||
     movie.startDate?.toLowerCase().includes(term)
-  );
+  )
 }
 
 

@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -20,7 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-details',
-  imports: [NgIf, NgFor, MatCardModule, MatListModule,  MatButtonModule, MatTooltipModule, FormsModule,  MatIconModule, MatInputModule, ReactiveFormsModule],
+  imports: [NgIf, NgFor, CommonModule, MatCardModule, MatListModule,  MatButtonModule, MatTooltipModule, FormsModule,  MatIconModule, MatInputModule, ReactiveFormsModule],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css'
 })

@@ -42,6 +42,9 @@ export class RegisterComponent {
         const success = this.userService.register(user)
         if(success){
           this.userService.login(user.username, user.password)
+          this.router.navigate(['/home']).then(() => {
+            window.location.reload()
+          })
         }else{
           this.error = 'Korisnicko ime vec postoji.'
         }

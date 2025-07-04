@@ -1,4 +1,4 @@
-import { NgForOf } from '@angular/common';
+import { CommonModule, NgForOf } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-review',
   standalone: true,
-  imports: [MatInputModule, NgForOf, MatFormFieldModule, FormsModule, MatButtonModule, MatIconModule, FormsModule],
+  imports: [MatInputModule, CommonModule, NgForOf, MatFormFieldModule, FormsModule, MatButtonModule, MatIconModule, FormsModule],
   templateUrl: './review.component.html',
   styleUrls: ['./review.component.css']   
 })

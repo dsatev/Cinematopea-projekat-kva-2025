@@ -22,7 +22,6 @@
   color: white;
   width: 300px;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,255,0,0.3);
 }
 
 .movie-card img {
@@ -54,8 +53,15 @@ button {
   font-weight: bold;
 }
 
+.reviews {
+  display: inline-flex;
+  width: 100%;
+  margin-top: 2rem;
+}
+
 .review-card {
-  margin-bottom: 1rem;
+  margin: 1rem;
+  max-width: 500px;
   background-color: #1e1e1e;
   color: white;
 }
@@ -67,4 +73,12 @@ button {
   font-size: 1.2rem;
   margin-bottom: 1rem;
   color: gold;
+}
+
+.filled-star {
+  color: #3cff00; 
+}
+
+.empty-star {
+  color: #444; 
 }

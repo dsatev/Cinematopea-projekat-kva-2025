@@ -16,15 +16,14 @@ import { UtilsService } from '../../services/utils.service';
   styleUrl: './cart.component.css'
 })
 export class CartComponent  {
-  reservations: Reservation[] = [];
-  projections: Projection[] = [];
-  movies: Movie[] = [];
-  total: number = 0;
+  reservations: Reservation[] = []
+  projections: Projection[] = []
+  movies: Movie[] = []
+  total: number = 0
 
   constructor(
     private reservationService: ReservationService,
     private projectionService: ProjectionService,
-    private movieService: MovieService,
     private userService: UserService,
     public utils: UtilsService
   ) {const user = this.userService.getCurrentUser()
@@ -51,14 +50,16 @@ export class CartComponent  {
     this.total = this.reservations
       .filter(r => r.status === 'reserved')
       .map(r => this.getProjection(r.projectionId)?.price || 0)
-      .reduce((acc, cur) => acc + cur, 0);
+      .reduce((acc, cur) => acc + cur, 0)
   }
 
   cancel(reservationId: number) {
-    this.reservationService.updateStatus(reservationId, 'cancled');
+    this.reservationService.updateStatus(reservationId, 'cancled')
+    window.location.reload()
   }
 
   markAsWatched(reservationId: number) {
-    this.reservationService.updateStatus(reservationId, 'watched');
+    this.reservationService.updateStatus(reservationId, 'watched')
+    window.location.reload()
   }
 }

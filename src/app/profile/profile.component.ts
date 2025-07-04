@@ -15,8 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  form: FormGroup;
-  currentUser: User | null = null;
+  form: FormGroup
+  currentUser: User | null = null
   
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
@@ -55,8 +55,8 @@ export class ProfileComponent {
         .filter((g: string) => g !== '')
     };
 
-    this.userService.updateProfile(updatedUser);
-    alert('Profil je uspešno sačuvan.');
+    this.userService.updateProfile(updatedUser)
+    alert('Profil je uspešno sačuvan.')
   }
 
 }
